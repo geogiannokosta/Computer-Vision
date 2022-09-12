@@ -8,3 +8,5 @@ Made with **opencv** and **mediapipe**. Based on the works of [Murtaza Hassan](h
 [Face Detection](./FaceDetection)
 
 [Face Mesh](./FaceMesh)
+
+[Dont Blink](./DontBlink) - personal project
