@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 import time
+import math
 
 class FaceMeshDetector():
     def __init__(self, staticMode=False, maxFaces=2, refineLandmarks=False, minDetectionConf=0.5, minTrackConf=0.5):
@@ -17,7 +18,7 @@ class FaceMeshDetector():
 
         self.drawSpecs = self.mpDraw.DrawingSpec(color=(0, 255, 0), thickness=1, circle_radius=1)
 
-    def findFaceMesh(self, img, draw=True):
+    def findFaceMesh(self, img, draw=False):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         # imgflip = cv2.flip(imgRGB, 1)
         self.results = self.faceMesh.process(imgRGB)
@@ -34,25 +35,13 @@ class FaceMeshDetector():
                     # print(id, x, y) #468 spots / values
 
                     # print the ids of the points on the face
-                    cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 1)
+                    # cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 1)
 
                     face.append([id, x, y])
                 faces.append(face)
         return img, faces
 
     def findDistance(self, p1, p2, img=None):
-        """
-        Find the distance between two landmarks based on their
-        index numbers.
-        :param p1: Point1
-        :param p2: Point2
-        :param img: Image to draw on.
-        :param draw: Flag to draw the output on the image.
-        :return: Distance between the points
-                 Image with output drawn
-                 Line information
-        """
-
         x1, y1 = p1
         x2, y2 = p2
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
