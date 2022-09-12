@@ -9,4 +9,4 @@ Made with **opencv** and **mediapipe**. Based on the works of [Murtaza Hassan](h
 
 [Face Mesh](./FaceMesh)
 
-[Dont Blink](./DontBlink) - personal project
+[Don't Blink](./DontBlink) - personal project inspired by **Doctor Who** series (*Episode Blink*)
